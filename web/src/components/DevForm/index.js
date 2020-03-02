@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 function DevForm({ onSubmit }) {
-  const [github_username, setGithubUsername] = useState('') 
+  const [github_username, setGithubUsername] = useState('')
   const [techs, setTechs] = useState('')
   const [latitude, setLatitude] = useState('')
   const [longitude, setLongitude] = useState('')
 
-  useEffect(()=>{
+  useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords
