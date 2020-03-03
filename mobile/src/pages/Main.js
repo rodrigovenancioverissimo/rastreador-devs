@@ -1,6 +1,6 @@
-import React, { useStates, useEffect } from 'react'
-import { StyleSheet } from 'react-native'
-import MapView from 'react-native-maps'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Image } from 'react-native'
+import MapView, { Marker } from 'react-native-maps'
 import { requestPermissionsAsync, getCurrentPositionAsync} from 'expo-location'
 
 function Main(){
@@ -30,12 +30,28 @@ function Main(){
     loadInitialPosition()
   }, [])
 
-  return <MapView initialRegion={currentRegion} style={styles.map}/>
+  if (!currentRegion){
+    return null
+  }
+  return (
+    <MapView initialRegion={currentRegion} style={styles.map} >
+      <Marker coordinate={{latitude: -15.5877095, longitude: -56.1007761}}>
+        <Image style={styles.avatar} source={{ uri: 'https://avatars2.githubusercontent.com/u/17599326?s=460&v=4'}} />
+      </Marker>
+    </MapView>
+  )
 }
  
 const styles = StyleSheet.create({
   map: {
     flex: 1
+  },
+  avatar: {
+    width: 54,
+    height: 54,
+    borderRadius: 4,
+    borderWidth: 4,
+    borderColor: '#FFF'
   }
 })
 
